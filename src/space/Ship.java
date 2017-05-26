@@ -50,6 +50,7 @@ public class Ship extends MassiveObject {
         applyForce(force);
     }
 
+
     public void Stabilizers(int dir) {
         applyTorque(dir * STABILIZERS);
     }

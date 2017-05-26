@@ -106,14 +106,30 @@ public abstract class MassiveObject {
      * based on its vel, acc, rotV, and rotA, after
      * time T having passed.
      */
-    public void update(double T) {
+    public void update(double T, double S) {
 
         _v[0] += _a[0] * T;
         _v[1] += _a[1] * T;
         _w += _al * T;
 
         _p[0] += _v[0] * T;
+        if (_p[0] > S) {
+            _p[0] = 0;
+            _p[1] = S - _p[1];
+        }
+        else if (_p[0] < 0) {
+            _p[0] = S;
+            _p[1] = S - _p[1];
+        }
         _p[1] -= _v[1] * T;
+        if (_p[1] > S) {
+            _p[1] = 0;
+            _p[0] = S - _p[0];
+        }
+        else if (_p[1] < 0) {
+            _p[1] = S;
+            _p[0] = S - _p[0];
+        }
         _th += _w * T;
 
     }

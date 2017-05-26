@@ -57,7 +57,7 @@ public class Main extends JFrame {
         ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(5);
         long lengthOfFrame = (long) (1000 / FRAMERATE);
         executor.scheduleAtFixedRate(new Input(U.getShip(), FRAMERATE), 0L, lengthOfFrame, TimeUnit.MILLISECONDS);
-        executor.scheduleAtFixedRate(new UpdatePhysics(U.getObjects(), FRAMERATE), 0L, lengthOfFrame, TimeUnit.MILLISECONDS);
+        executor.scheduleAtFixedRate(new UpdatePhysics(U, U.getObjects(), FRAMERATE), 0L, lengthOfFrame, TimeUnit.MILLISECONDS);
         executor.scheduleAtFixedRate(new RepaintFrame(this), 0L, lengthOfFrame, TimeUnit.MILLISECONDS);
         this.addKeyListener(new UserInput());
     }
